@@ -1,16 +1,13 @@
 {
   "rdbms": {
-    "MSSQLNATIVE": {
-      "databaseName": "metalurgica",
-      "instanceName": "",
-      "pluginId": "MSSQLNATIVE",
-      "usingDoubleDigit": false,
-      "usingIntegratedSecurity": false,
+    "POSTGRESQL": {
+      "databaseName": "postgres",
+      "pluginId": "POSTGRESQL",
       "accessType": 0,
-      "hostname": "localhost",
-      "password": "Encrypted 4e6dc8f9fcad04cf93a2a40bba75fec3fd89",
-      "pluginName": "MS SQL Server (Native)",
-      "port": "1433",
+      "hostname": "aws-0-us-east-2.pooler.supabase.com",
+      "password": "Encrypted 2be98afc80285d3daf81ffa62f6b3b2c2",
+      "pluginName": "PostgreSQL",
+      "port": "5432",
       "attributes": {
         "SUPPORTS_TIMESTAMP_DATA_TYPE": "Y",
         "QUOTE_ALL_FIELDS": "N",
@@ -19,11 +16,10 @@
         "PRESERVE_RESERVED_WORD_CASE": "Y",
         "SQL_CONNECT": "",
         "FORCE_IDENTIFIERS_TO_UPPERCASE": "N",
-        "PREFERRED_SCHEMA_NAME": "",
-        "EXTRA_OPTION_MSSQLNATIVE.encrypt": "false"
+        "PREFERRED_SCHEMA_NAME": ""
       },
       "manualUrl": "",
-      "username": "sa"
+      "username": "postgres.jwpkxstshegludavbgao"
     }
   },
   "name": "DW-Metalurgica"

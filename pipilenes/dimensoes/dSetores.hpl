@@ -21,16 +21,161 @@
   </notepads>
   <order>
     <hop>
-      <from>Excel - Setores</from>
-      <to>Meta Data</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Meta Data</from>
       <to>DW - dSetores</to>
       <enabled>Y</enabled>
     </hop>
+    <hop>
+      <from>Excel - Setores</from>
+      <to>Add Clasificacao Setor</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Add Clasificacao Setor</from>
+      <to>Add ID Classificacao Setor</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Add ID Classificacao Setor</from>
+      <to>Meta Data</to>
+      <enabled>Y</enabled>
+    </hop>
   </order>
+  <transform>
+    <name>Add Clasificacao Setor</name>
+    <type>ValueMapper</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <field_to_use>Nome_Setor</field_to_use>
+    <fields>
+      <field>
+        <source_value>Comercial</source_value>
+        <target_value>Pré-Produção</target_value>
+      </field>
+      <field>
+        <source_value>Engenharia de Produto</source_value>
+        <target_value>Pré-Produção</target_value>
+      </field>
+      <field>
+        <source_value>Compras</source_value>
+        <target_value>Pré-Produção</target_value>
+      </field>
+      <field>
+        <source_value>PCP</source_value>
+        <target_value>Pré-Produção</target_value>
+      </field>
+      <field>
+        <source_value>Desenho Técnico</source_value>
+        <target_value>Chão de Fábrica</target_value>
+      </field>
+      <field>
+        <source_value>Preparação</source_value>
+        <target_value>Chão de Fábrica</target_value>
+      </field>
+      <field>
+        <source_value>Corte</source_value>
+        <target_value>Chão de Fábrica</target_value>
+      </field>
+      <field>
+        <source_value>Solda</source_value>
+        <target_value>Chão de Fábrica</target_value>
+      </field>
+      <field>
+        <source_value>Usinagem</source_value>
+        <target_value>Chão de Fábrica</target_value>
+      </field>
+      <field>
+        <source_value>Qualidade Final</source_value>
+        <target_value>Pós-Produção</target_value>
+      </field>
+      <field>
+        <source_value>Expedição</source_value>
+        <target_value>Pós-Produção</target_value>
+      </field>
+    </fields>
+    <target_field>Classificacao_Setor</target_field>
+    <attributes/>
+    <GUI>
+      <xloc>416</xloc>
+      <yloc>144</yloc>
+    </GUI>
+  </transform>
+  <transform>
+    <name>Add ID Classificacao Setor</name>
+    <type>ValueMapper</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <field_to_use>Classificacao_Setor</field_to_use>
+    <fields>
+      <field>
+        <source_value>Pré-Produção</source_value>
+        <target_value>1</target_value>
+      </field>
+      <field>
+        <source_value>Chão de Fábrica</source_value>
+        <target_value>2</target_value>
+      </field>
+      <field>
+        <source_value>Pós-Produção</source_value>
+        <target_value>3</target_value>
+      </field>
+    </fields>
+    <target_field>Id_Classificacao_Setor</target_field>
+    <attributes/>
+    <GUI>
+      <xloc>608</xloc>
+      <yloc>144</yloc>
+    </GUI>
+  </transform>
+  <transform>
+    <name>DW - dSetores</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <commit>1000</commit>
+    <connection>DW-Metalurgica</connection>
+    <fields>
+</fields>
+    <ignore_errors>N</ignore_errors>
+    <only_when_have_rows>N</only_when_have_rows>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <return_field/>
+    <return_keys>N</return_keys>
+    <schema>public</schema>
+    <specify_fields>N</specify_fields>
+    <table>dSetores</table>
+    <tablename_field/>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_in_table>Y</tablename_in_table>
+    <truncate>Y</truncate>
+    <use_batch>Y</use_batch>
+    <attributes/>
+    <GUI>
+      <xloc>896</xloc>
+      <yloc>144</yloc>
+    </GUI>
+  </transform>
   <transform>
     <name>Excel - Setores</name>
     <type>ExcelInput</type>
@@ -42,24 +187,14 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <accept_field/>
     <accept_filenames>N</accept_filenames>
-    <accept_transform_name/>
     <add_to_result_filenames>Y</add_to_result_filenames>
-    <bad_line_files_destination_directory/>
     <bad_line_files_extension>warning</bad_line_files_extension>
-    <encoding/>
     <error_ignored>N</error_ignored>
-    <error_line_files_destination_directory/>
     <error_line_files_extension>error</error_line_files_extension>
     <error_line_skipped>N</error_line_skipped>
-    <extensionFieldName/>
     <fields>
       <field>
-        <currency/>
-        <decimal/>
-        <format/>
-        <group/>
         <length>-1</length>
         <name>ID_Setor</name>
         <precision>-1</precision>
@@ -68,10 +203,6 @@
         <type>Integer</type>
       </field>
       <field>
-        <currency/>
-        <decimal/>
-        <format/>
-        <group/>
         <length>-1</length>
         <name>Nome_Setor</name>
         <precision>-1</precision>
@@ -80,10 +211,6 @@
         <type>String</type>
       </field>
       <field>
-        <currency/>
-        <decimal/>
-        <format/>
-        <group/>
         <length>-1</length>
         <name>Responsavel</name>
         <precision>-1</precision>
@@ -92,10 +219,6 @@
         <type>String</type>
       </field>
       <field>
-        <currency/>
-        <decimal/>
-        <format/>
-        <group/>
         <length>-1</length>
         <name>Tempo_Padrao_Processamento</name>
         <precision>-1</precision>
@@ -104,10 +227,6 @@
         <type>Integer</type>
       </field>
       <field>
-        <currency/>
-        <decimal/>
-        <format/>
-        <group/>
         <length>-1</length>
         <name>Capacidade_Diaria</name>
         <precision>-1</precision>
@@ -117,26 +236,14 @@
       </field>
     </fields>
     <file>
-      <exclude_filemask/>
       <file_required>N</file_required>
-      <filemask/>
       <include_subfolders>N</include_subfolders>
       <name>${PROJECT_HOME}/datasets/bases_modulo_produtivo.xlsx</name>
     </file>
-    <filefield/>
     <header>Y</header>
-    <hiddenFieldName/>
-    <lastModificationTimeFieldName/>
     <limit>0</limit>
-    <line_number_files_destination_directory/>
     <line_number_files_extension>line</line_number_files_extension>
     <noempty>Y</noempty>
-    <pathFieldName/>
-    <rootUriNameFieldName/>
-    <rownumfield/>
-    <schema_definition/>
-    <sheetfield/>
-    <sheetrownumfield/>
     <sheets>
       <sheet>
         <name>Setores</name>
@@ -144,12 +251,9 @@
         <startrow>0</startrow>
       </sheet>
     </sheets>
-    <shortFileFieldName/>
-    <sizeFieldName/>
     <spreadsheet_type>POI</spreadsheet_type>
     <stoponempty>N</stoponempty>
     <strict_types>N</strict_types>
-    <uriNameFieldName/>
     <attributes/>
     <GUI>
       <xloc>240</xloc>
@@ -170,23 +274,24 @@
     <fields>
       <field>
         <name>ID_Setor</name>
-        <rename/>
       </field>
       <field>
         <name>Tempo_Padrao_Processamento</name>
-        <rename/>
       </field>
       <field>
         <name>Capacidade_Diaria</name>
-        <rename/>
       </field>
       <field>
         <name>Nome_Setor</name>
-        <rename/>
       </field>
       <field>
         <name>Responsavel</name>
-        <rename/>
+      </field>
+      <field>
+        <name>Classificacao_Setor</name>
+      </field>
+      <field>
+        <name>Id_Classificacao_Setor</name>
       </field>
       <select_unspecified>N</select_unspecified>
       <meta>
@@ -274,47 +379,44 @@
         <currency_symbol/>
         <storage_type/>
       </meta>
+      <meta>
+        <name>Classificacao_Setor</name>
+        <rename>Classificacao_Setor</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>Id_Classificacao_Setor</name>
+        <rename>Id_Classificacao_Setor</rename>
+        <type>Integer</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
     </fields>
     <attributes/>
     <GUI>
-      <xloc>416</xloc>
-      <yloc>144</yloc>
-    </GUI>
-  </transform>
-  <transform>
-    <name>DW - dSetores</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <commit>1000</commit>
-    <connection>DW-Metalurgica</connection>
-    <fields>
-</fields>
-    <ignore_errors>N</ignore_errors>
-    <only_when_have_rows>N</only_when_have_rows>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <return_field/>
-    <return_keys>N</return_keys>
-    <schema>dbo</schema>
-    <specify_fields>N</specify_fields>
-    <table>dSetores</table>
-    <tablename_field/>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_in_table>Y</tablename_in_table>
-    <truncate>Y</truncate>
-    <use_batch>Y</use_batch>
-    <attributes/>
-    <GUI>
-      <xloc>576</xloc>
+      <xloc>768</xloc>
       <yloc>144</yloc>
     </GUI>
   </transform>

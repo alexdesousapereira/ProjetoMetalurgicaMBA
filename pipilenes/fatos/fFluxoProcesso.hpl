@@ -31,13 +31,18 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Add Column - Tempo_Setor</from>
-      <to>Add Column - Ocor Normalizada</to>
+      <from>Add Column - Ocor Normalizada</from>
+      <to>Meta Data</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Add Column - Ocor Normalizada</from>
-      <to>Meta Data</to>
+      <from>Add Column - Tempo_Setor</from>
+      <to>Corrige_Tempo_Setor</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Corrige_Tempo_Setor</from>
+      <to>Add Column - Ocor Normalizada</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -135,7 +140,7 @@ else {
     </fields>
     <attributes/>
     <GUI>
-      <xloc>704</xloc>
+      <xloc>912</xloc>
       <yloc>128</yloc>
     </GUI>
   </transform>
@@ -162,7 +167,48 @@ else {
     </formulas>
     <attributes/>
     <GUI>
-      <xloc>480</xloc>
+      <xloc>432</xloc>
+      <yloc>128</yloc>
+    </GUI>
+  </transform>
+  <transform>
+    <name>Corrige_Tempo_Setor</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>// Verifica se Data_Saida_Setor é nulo
+if (Data_Saida_Setor == null) {
+    Tempo_Setor = null;
+} else {
+    // Mantém o valor original
+    Tempo_Setor = Tempo_Setor;
+}</jsScript_script>
+      </jsScript>
+    </jsScripts>
+    <fields>
+      <field>
+        <name>Tempo_Setor</name>
+        <rename>Tempo_Setor</rename>
+        <type>Number</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>Y</replace>
+      </field>
+    </fields>
+    <attributes/>
+    <GUI>
+      <xloc>672</xloc>
       <yloc>128</yloc>
     </GUI>
   </transform>
@@ -185,21 +231,18 @@ else {
     <only_when_have_rows>N</only_when_have_rows>
     <partitioning_daily>N</partitioning_daily>
     <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
     <partitioning_monthly>Y</partitioning_monthly>
-    <return_field/>
     <return_keys>N</return_keys>
-    <schema>dbo</schema>
+    <schema>public</schema>
     <specify_fields>N</specify_fields>
     <table>fFluxoProcesso</table>
-    <tablename_field/>
     <tablename_in_field>N</tablename_in_field>
     <tablename_in_table>Y</tablename_in_table>
     <truncate>Y</truncate>
     <use_batch>Y</use_batch>
     <attributes/>
     <GUI>
-      <xloc>1040</xloc>
+      <xloc>1296</xloc>
       <yloc>128</yloc>
     </GUI>
   </transform>
@@ -339,7 +382,7 @@ else {
     <strict_types>N</strict_types>
     <attributes/>
     <GUI>
-      <xloc>320</xloc>
+      <xloc>256</xloc>
       <yloc>128</yloc>
     </GUI>
   </transform>
@@ -357,59 +400,45 @@ else {
     <fields>
       <field>
         <name>ID_Fluxo</name>
-        <rename/>
       </field>
       <field>
         <name>ID_Pedido</name>
-        <rename/>
       </field>
       <field>
         <name>ID_Setor</name>
-        <rename/>
       </field>
       <field>
         <name>ID_Funcionario</name>
-        <rename/>
       </field>
       <field>
         <name>Turno</name>
-        <rename/>
       </field>
       <field>
         <name>Data_Entrada_Setor</name>
-        <rename/>
       </field>
       <field>
         <name>Data_Saida_Setor</name>
-        <rename/>
       </field>
       <field>
         <name>Tempo_Padrao</name>
-        <rename/>
       </field>
       <field>
         <name>Tempo_Real</name>
-        <rename/>
       </field>
       <field>
         <name>Retrabalho</name>
-        <rename/>
       </field>
       <field>
         <name>Ocorrencia_Eventual</name>
-        <rename/>
       </field>
       <field>
         <name>Status</name>
-        <rename/>
       </field>
       <field>
         <name>Tempo_Setor</name>
-        <rename/>
       </field>
       <field>
         <name>Ocorrencia_Normalizada</name>
-        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
       <meta>
@@ -653,7 +682,7 @@ else {
     </fields>
     <attributes/>
     <GUI>
-      <xloc>896</xloc>
+      <xloc>1152</xloc>
       <yloc>128</yloc>
     </GUI>
   </transform>

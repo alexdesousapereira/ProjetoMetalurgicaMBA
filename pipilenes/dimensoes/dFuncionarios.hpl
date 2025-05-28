@@ -32,6 +32,43 @@
     </hop>
   </order>
   <transform>
+    <name>DW - dFuncionarios</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <commit>1000</commit>
+    <connection>DW-Metalurgica</connection>
+    <fields>
+</fields>
+    <ignore_errors>N</ignore_errors>
+    <only_when_have_rows>N</only_when_have_rows>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <return_field/>
+    <return_keys>N</return_keys>
+    <schema>public</schema>
+    <specify_fields>N</specify_fields>
+    <table>dFuncionarios</table>
+    <tablename_field/>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_in_table>Y</tablename_in_table>
+    <truncate>Y</truncate>
+    <use_batch>Y</use_batch>
+    <attributes/>
+    <GUI>
+      <xloc>560</xloc>
+      <yloc>96</yloc>
+    </GUI>
+  </transform>
+  <transform>
     <name>Excel - Funcionarios</name>
     <type>ExcelInput</type>
     <description/>
@@ -42,24 +79,14 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <accept_field/>
     <accept_filenames>N</accept_filenames>
-    <accept_transform_name/>
     <add_to_result_filenames>Y</add_to_result_filenames>
-    <bad_line_files_destination_directory/>
     <bad_line_files_extension>warning</bad_line_files_extension>
-    <encoding/>
     <error_ignored>N</error_ignored>
-    <error_line_files_destination_directory/>
     <error_line_files_extension>error</error_line_files_extension>
     <error_line_skipped>N</error_line_skipped>
-    <extensionFieldName/>
     <fields>
       <field>
-        <currency/>
-        <decimal/>
-        <format/>
-        <group/>
         <length>-1</length>
         <name>ID_Funcionario</name>
         <precision>-1</precision>
@@ -68,10 +95,6 @@
         <type>Integer</type>
       </field>
       <field>
-        <currency/>
-        <decimal/>
-        <format/>
-        <group/>
         <length>-1</length>
         <name>Nome</name>
         <precision>-1</precision>
@@ -80,10 +103,6 @@
         <type>String</type>
       </field>
       <field>
-        <currency/>
-        <decimal/>
-        <format/>
-        <group/>
         <length>-1</length>
         <name>ID_Setor</name>
         <precision>-1</precision>
@@ -92,10 +111,6 @@
         <type>Integer</type>
       </field>
       <field>
-        <currency/>
-        <decimal/>
-        <format/>
-        <group/>
         <length>-1</length>
         <name>Setor</name>
         <precision>-1</precision>
@@ -104,10 +119,6 @@
         <type>String</type>
       </field>
       <field>
-        <currency/>
-        <decimal/>
-        <format/>
-        <group/>
         <length>-1</length>
         <name>Cargo</name>
         <precision>-1</precision>
@@ -116,10 +127,6 @@
         <type>String</type>
       </field>
       <field>
-        <currency/>
-        <decimal/>
-        <format/>
-        <group/>
         <length>-1</length>
         <name>Turno</name>
         <precision>-1</precision>
@@ -128,10 +135,6 @@
         <type>Integer</type>
       </field>
       <field>
-        <currency/>
-        <decimal/>
-        <format/>
-        <group/>
         <length>-1</length>
         <name>Salario_Mensal</name>
         <precision>-1</precision>
@@ -140,10 +143,6 @@
         <type>Integer</type>
       </field>
       <field>
-        <currency/>
-        <decimal/>
-        <format/>
-        <group/>
         <length>-1</length>
         <name>Custo_Hora</name>
         <precision>-1</precision>
@@ -152,10 +151,6 @@
         <type>Number</type>
       </field>
       <field>
-        <currency/>
-        <decimal/>
-        <format/>
-        <group/>
         <length>-1</length>
         <name>Horas_Mensais_Disponiveis</name>
         <precision>-1</precision>
@@ -164,10 +159,6 @@
         <type>Integer</type>
       </field>
       <field>
-        <currency/>
-        <decimal/>
-        <format/>
-        <group/>
         <length>-1</length>
         <name>Eficiência_Técnica</name>
         <precision>-1</precision>
@@ -176,10 +167,6 @@
         <type>Number</type>
       </field>
       <field>
-        <currency/>
-        <decimal/>
-        <format/>
-        <group/>
         <length>-1</length>
         <name>Horas_Produtivas_Mês</name>
         <precision>-1</precision>
@@ -188,10 +175,6 @@
         <type>Number</type>
       </field>
       <field>
-        <currency/>
-        <decimal/>
-        <format/>
-        <group/>
         <length>-1</length>
         <name>Horas_Produtivas_Dia</name>
         <precision>-1</precision>
@@ -201,26 +184,14 @@
       </field>
     </fields>
     <file>
-      <exclude_filemask/>
       <file_required>N</file_required>
-      <filemask/>
       <include_subfolders>N</include_subfolders>
       <name>${PROJECT_HOME}/datasets/bases_modulo_produtivo.xlsx</name>
     </file>
-    <filefield/>
     <header>Y</header>
-    <hiddenFieldName/>
-    <lastModificationTimeFieldName/>
     <limit>0</limit>
-    <line_number_files_destination_directory/>
     <line_number_files_extension>line</line_number_files_extension>
     <noempty>Y</noempty>
-    <pathFieldName/>
-    <rootUriNameFieldName/>
-    <rownumfield/>
-    <schema_definition/>
-    <sheetfield/>
-    <sheetrownumfield/>
     <sheets>
       <sheet>
         <name>Funcionarios</name>
@@ -228,12 +199,9 @@
         <startrow>0</startrow>
       </sheet>
     </sheets>
-    <shortFileFieldName/>
-    <sizeFieldName/>
     <spreadsheet_type>POI</spreadsheet_type>
     <stoponempty>N</stoponempty>
     <strict_types>N</strict_types>
-    <uriNameFieldName/>
     <attributes/>
     <GUI>
       <xloc>224</xloc>
@@ -254,51 +222,39 @@
     <fields>
       <field>
         <name>ID_Funcionario</name>
-        <rename/>
       </field>
       <field>
         <name>Nome</name>
-        <rename/>
       </field>
       <field>
         <name>ID_Setor</name>
-        <rename/>
       </field>
       <field>
         <name>Setor</name>
-        <rename/>
       </field>
       <field>
         <name>Cargo</name>
-        <rename/>
       </field>
       <field>
         <name>Turno</name>
-        <rename/>
       </field>
       <field>
         <name>Salario_Mensal</name>
-        <rename/>
       </field>
       <field>
         <name>Custo_Hora</name>
-        <rename/>
       </field>
       <field>
         <name>Horas_Mensais_Disponiveis</name>
-        <rename/>
       </field>
       <field>
         <name>Eficiência_Técnica</name>
-        <rename/>
       </field>
       <field>
         <name>Horas_Produtivas_Mês</name>
-        <rename/>
       </field>
       <field>
         <name>Horas_Produtivas_Dia</name>
-        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
       <meta>
@@ -509,43 +465,6 @@
     <attributes/>
     <GUI>
       <xloc>400</xloc>
-      <yloc>96</yloc>
-    </GUI>
-  </transform>
-  <transform>
-    <name>DW - dFuncionarios</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <commit>1000</commit>
-    <connection>DW-Metalurgica</connection>
-    <fields>
-</fields>
-    <ignore_errors>N</ignore_errors>
-    <only_when_have_rows>N</only_when_have_rows>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <return_field/>
-    <return_keys>N</return_keys>
-    <schema>dbo</schema>
-    <specify_fields>N</specify_fields>
-    <table>dFuncionarios</table>
-    <tablename_field/>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_in_table>Y</tablename_in_table>
-    <truncate>Y</truncate>
-    <use_batch>Y</use_batch>
-    <attributes/>
-    <GUI>
-      <xloc>560</xloc>
       <yloc>96</yloc>
     </GUI>
   </transform>
