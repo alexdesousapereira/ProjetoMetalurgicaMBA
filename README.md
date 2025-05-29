@@ -5,7 +5,7 @@
 
 Este repositório contém o projeto **MBA-Metalurgica**, desenvolvido com Apache Hop para realizar processos de ETL em dados industriais simulados. O foco é a construção de uma base de dados analítica para exploração de indicadores operacionais, a partir de planilhas Excel, com vistas a apoiar um sistema de Business Intelligence (BI).
 
-![Projeto](media/Estrutura.png.png)
+![Projeto](media/Estrutura.png)
 
 ---
 
