@@ -21,16 +21,75 @@
   </notepads>
   <order>
     <hop>
-      <from>Excel - Pedidos</from>
-      <to>Meta Data</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Meta Data</from>
       <to>DW - fPedidos</to>
       <enabled>Y</enabled>
     </hop>
+    <hop>
+      <from>Sort rows - Ordena Setor</from>
+      <to>Unique rows</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Excel - Pedidos</from>
+      <to>Busca Ultimo Setor Pedido</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Busca Ultimo Setor Pedido</from>
+      <to>Meta Data</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Unique rows</from>
+      <to>Busca Ultimo Setor Pedido</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Excel - Fluxo</from>
+      <to>Seleciona Colunas</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Seleciona Colunas</from>
+      <to>Sort rows - Ordena Setor</to>
+      <enabled>Y</enabled>
+    </hop>
   </order>
+  <transform>
+    <name>Busca Ultimo Setor Pedido</name>
+    <type>StreamLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <from>Unique rows</from>
+    <input_sorted>N</input_sorted>
+    <preserve_memory>Y</preserve_memory>
+    <sorted_list>N</sorted_list>
+    <integer_pair>N</integer_pair>
+    <lookup>
+      <key>
+        <name>ID_Pedido</name>
+        <field>ID_Pedido</field>
+      </key>
+      <value>
+        <name>ID_Setor</name>
+        <rename>Ultimo_Setor_Pedido</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+    </lookup>
+    <attributes/>
+    <GUI>
+      <xloc>688</xloc>
+      <yloc>144</yloc>
+    </GUI>
+  </transform>
   <transform>
     <name>DW - fPedidos</name>
     <type>TableOutput</type>
@@ -50,22 +109,159 @@
     <only_when_have_rows>N</only_when_have_rows>
     <partitioning_daily>N</partitioning_daily>
     <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
     <partitioning_monthly>Y</partitioning_monthly>
-    <return_field/>
     <return_keys>N</return_keys>
     <schema>public</schema>
     <specify_fields>N</specify_fields>
     <table>fPedidos</table>
-    <tablename_field/>
     <tablename_in_field>N</tablename_in_field>
     <tablename_in_table>Y</tablename_in_table>
     <truncate>Y</truncate>
     <use_batch>Y</use_batch>
     <attributes/>
     <GUI>
-      <xloc>752</xloc>
-      <yloc>208</yloc>
+      <xloc>1088</xloc>
+      <yloc>144</yloc>
+    </GUI>
+  </transform>
+  <transform>
+    <name>Excel - Fluxo</name>
+    <type>ExcelInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <accept_filenames>N</accept_filenames>
+    <add_to_result_filenames>Y</add_to_result_filenames>
+    <bad_line_files_extension>warning</bad_line_files_extension>
+    <error_ignored>N</error_ignored>
+    <error_line_files_extension>error</error_line_files_extension>
+    <error_line_skipped>N</error_line_skipped>
+    <fields>
+      <field>
+        <length>-1</length>
+        <name>ID_Fluxo</name>
+        <precision>-1</precision>
+        <repeat>N</repeat>
+        <trim_type>both</trim_type>
+        <type>String</type>
+      </field>
+      <field>
+        <length>-1</length>
+        <name>ID_Pedido</name>
+        <precision>-1</precision>
+        <repeat>N</repeat>
+        <trim_type>both</trim_type>
+        <type>String</type>
+      </field>
+      <field>
+        <length>-1</length>
+        <name>ID_Setor</name>
+        <precision>-1</precision>
+        <repeat>N</repeat>
+        <trim_type>both</trim_type>
+        <type>Integer</type>
+      </field>
+      <field>
+        <length>-1</length>
+        <name>ID_Funcionario</name>
+        <precision>-1</precision>
+        <repeat>N</repeat>
+        <trim_type>both</trim_type>
+        <type>Integer</type>
+      </field>
+      <field>
+        <length>-1</length>
+        <name>Turno</name>
+        <precision>-1</precision>
+        <repeat>N</repeat>
+        <trim_type>both</trim_type>
+        <type>Integer</type>
+      </field>
+      <field>
+        <length>-1</length>
+        <name>Data_Entrada_Setor</name>
+        <precision>-1</precision>
+        <repeat>N</repeat>
+        <trim_type>both</trim_type>
+        <type>Date</type>
+      </field>
+      <field>
+        <length>-1</length>
+        <name>Data_Saida_Setor</name>
+        <precision>-1</precision>
+        <repeat>N</repeat>
+        <trim_type>both</trim_type>
+        <type>Date</type>
+      </field>
+      <field>
+        <length>-1</length>
+        <name>Tempo_Padrao</name>
+        <precision>-1</precision>
+        <repeat>N</repeat>
+        <trim_type>both</trim_type>
+        <type>Integer</type>
+      </field>
+      <field>
+        <length>-1</length>
+        <name>Tempo_Real</name>
+        <precision>-1</precision>
+        <repeat>N</repeat>
+        <trim_type>both</trim_type>
+        <type>String</type>
+      </field>
+      <field>
+        <length>-1</length>
+        <name>Retrabalho</name>
+        <precision>-1</precision>
+        <repeat>N</repeat>
+        <trim_type>both</trim_type>
+        <type>Integer</type>
+      </field>
+      <field>
+        <length>-1</length>
+        <name>Ocorrencia_Eventual</name>
+        <precision>-1</precision>
+        <repeat>N</repeat>
+        <trim_type>both</trim_type>
+        <type>String</type>
+      </field>
+      <field>
+        <length>-1</length>
+        <name>Status</name>
+        <precision>-1</precision>
+        <repeat>N</repeat>
+        <trim_type>both</trim_type>
+        <type>String</type>
+      </field>
+    </fields>
+    <file>
+      <file_required>N</file_required>
+      <include_subfolders>N</include_subfolders>
+      <name>${PROJECT_HOME}/datasets/bases_modulo_produtivo.xlsx</name>
+    </file>
+    <header>Y</header>
+    <limit>0</limit>
+    <line_number_files_extension>line</line_number_files_extension>
+    <noempty>Y</noempty>
+    <sheets>
+      <sheet>
+        <name>Fluxo_Processo</name>
+        <startcol>0</startcol>
+        <startrow>0</startrow>
+      </sheet>
+    </sheets>
+    <spreadsheet_type>POI</spreadsheet_type>
+    <stoponempty>N</stoponempty>
+    <strict_types>N</strict_types>
+    <attributes/>
+    <GUI>
+      <xloc>688</xloc>
+      <yloc>496</yloc>
     </GUI>
   </transform>
   <transform>
@@ -228,8 +424,8 @@
     <strict_types>N</strict_types>
     <attributes/>
     <GUI>
-      <xloc>416</xloc>
-      <yloc>208</yloc>
+      <xloc>480</xloc>
+      <yloc>144</yloc>
     </GUI>
   </transform>
   <transform>
@@ -288,6 +484,9 @@
       </field>
       <field>
         <name>Status_Financeiro</name>
+      </field>
+      <field>
+        <name>Ultimo_Setor_Pedido</name>
       </field>
       <select_unspecified>N</select_unspecified>
       <meta>
@@ -545,11 +744,119 @@
         <currency_symbol/>
         <storage_type/>
       </meta>
+      <meta>
+        <name>Ultimo_Setor_Pedido</name>
+        <rename>Ultimo_Setor_Pedido</rename>
+        <type>Integer</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
     </fields>
     <attributes/>
     <GUI>
-      <xloc>592</xloc>
-      <yloc>208</yloc>
+      <xloc>880</xloc>
+      <yloc>144</yloc>
+    </GUI>
+  </transform>
+  <transform>
+    <name>Seleciona Colunas</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>ID_Pedido</name>
+      </field>
+      <field>
+        <name>ID_Setor</name>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <attributes/>
+    <GUI>
+      <xloc>688</xloc>
+      <yloc>416</yloc>
+    </GUI>
+  </transform>
+  <transform>
+    <name>Sort rows - Ordena Setor</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <compress>N</compress>
+    <directory>${java.io.tmpdir}</directory>
+    <fields>
+      <field>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <name>ID_Pedido</name>
+        <presorted>N</presorted>
+      </field>
+      <field>
+        <ascending>N</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <name>ID_Setor</name>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+    <sort_prefix>out</sort_prefix>
+    <sort_size>1000000</sort_size>
+    <unique_rows>N</unique_rows>
+    <attributes/>
+    <GUI>
+      <xloc>688</xloc>
+      <yloc>320</yloc>
+    </GUI>
+  </transform>
+  <transform>
+    <name>Unique rows</name>
+    <type>Unique</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <count_rows>N</count_rows>
+    <fields>
+      <field>
+        <case_insensitive>N</case_insensitive>
+        <name>ID_Pedido</name>
+      </field>
+    </fields>
+    <reject_duplicate_row>N</reject_duplicate_row>
+    <attributes/>
+    <GUI>
+      <xloc>688</xloc>
+      <yloc>240</yloc>
     </GUI>
   </transform>
   <transform_error_handling>
