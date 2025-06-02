@@ -107,14 +107,14 @@ MBA-Metalurgica/
 #### Clone o projeto:
 
 ```bash
-git clone https://github.com/seu_usuario/mba-metalurgica.git
-cd mba-metalurgica
+git clone https://github.com/alexdesousapereira/ProjetoMetalurgicaMBA.git
+cd ProjetoMetalurgicaMBA
 ```
 
 #### Execute o projeto no Apache Hop:
 
 1. Abra o **Apache Hop Gui**.
-2. Crie um novo projeto e selecione a pasta `MBA-Metalurgica` como diretório raiz.
+2. Crie um novo projeto e selecione a pasta `/ProjetoMetalurgicaMBA` como diretório raiz.
 3. Importe ou configure suas variáveis de ambiente e conexões se necessário.
 4. Execute o workflow `orquestrator.hwf` para rodar o processo completo.
 
